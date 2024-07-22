@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>개항누리길 포차거리</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background: url('poster.png') no-repeat center center;
+            background-size: cover;
+            color: white;
+            text-align: center;
+            padding: 80px 0;
+            position: relative;
+        }
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0);
+        }
+        header h1 {
+            position: relative;
+            z-index: 1;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            padding: 30px;
+            background-color: #f8f9fa;
+        }
+        .slider {
+            position: relative;
+            width: 100%;
+            max-width: 100%;
+            margin: 0 auto;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .slides {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+        .slide {
+            min-width: 100%;
+            box-sizing: border-box;
+            height: 300px; /* Set fixed height */
+        }
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 10px;
+        }
+        .store-container {
+            padding: 20px;
+        }
+        .store-title {
+            padding-top: 10px;
+            padding-bottom: 10px;
+            border-radius: 20px;
+            text-align: center;
+            font-family: "나눔고딕";
+            font-weight: bold;
+            font-size: 2em; /* Large font size */
+            margin-bottom: 20px; /* Space below the title */
+            color: #343a40; /* Dark color for better readability */
+            background-color: rgb(219, 211, 201);
+        }
+        .store-buttons-wrapper {
+            overflow: hidden; /* Hide overflowing content */
+            padding: 10px 0; /* Space around the buttons */
+            border: 1px solid #6c6b6b; /* Optional: Add border for visual distinction */
+            border
+            border-radius: 8px; /* Optional: Rounded corners */
+            position: relative;
+        }
+        .store-buttons {
+            display: flex;
+            transition: transform 0.5s ease-in-out;
+        }
+        .store-button {
+            flex: 0 0 300px; /* Fixed width for square shape */
+            height: 300px; /* Fixed height for square shape */
+            width: 300px;
+            background-color: #fff;
+            border: none;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            text-align: center;
+            cursor: pointer;
+            position: relative;
+        }
+        .store-button img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        .store-button h3 {
+            position: absolute;
+            bottom: 10px;
+            left: 0;
+            right: 0;
+            margin: 0;
+            padding: 0 10px;
+            color: #ffffff;
+            font-family: "굴림";
+            background: rgba(25, 26, 25, 0.699); /* Dark overlay for text visibility */
+            font-size: 30px;
+        }
+        .store-info {
+            display: none; /* Hide details by default */
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+        .store-info.active {
+            display: block; /* Show details when active */
+        }
+        img.custom-size {
+            width: 200px;
+            height: 200px;
+            margin-right: 10px;
+        }
+        .ip {
+            display: flex;
+            width: 252px;
+            height: 252px;
+        }
+        .external-stores {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px;
+            padding: 20px 0;
+        }
+        .external-store {
+            display: flex;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        .external-store img {
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            margin-right: 20px;
+        }
+        .external-store div {
+            padding: 20px;
+            text-align: left;
+        }
+        .external-store h3 {
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-size: 1.7em;
+            font-family: "나눔고딕";
+        }
+        .external-store p {
+            margin: 10px 0 0;
+        }
+        .container2 {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            margin-left: 20px;
+            margin-right: 20px;
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+        .container2 img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* 이미지가 컨테이너를 꽉 채우도록 조정 */
+            object-position: center; /* 이미지의 중심을 컨테이너의 중심으로 정렬 */
+        }
+    </style>
+</head>
+<body>
+    <header>
+    </header>
+    <div class="container">
+        <div class="slider">
+            <div class="slides">
+                <div class="slide"><img src="bg1.jpg" alt="Image 1"></div>
+                <div class="slide"><img src="bg2.jpg" alt="Image 2"></div>
+                <div class="slide"><img src="bg3.jpg" alt="Image 3"></div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="store-container">
+            <div class="store-title">개항누리길 내부 상점 소개</div>
+            <div class="store-buttons-wrapper">
+                <div class="store-buttons">
+                    <button class="store-button" data-info="info1">
+                        <img src="store1.jpg" alt="Store 1">
+                        <h3>마더파더</h3>
+                    </button>
+                    <button class="store-button" data-info="info2">
+                        <img src="store2.jpg" alt="Store 2">
+                        <h3>나도셰프</h3>
+                    </button>
+                    <button class="store-button" data-info="info3">
+                        <img src="store3.jpg" alt="Store 3">
+                        <h3>프롬유</h3>
+                    </button>
+                    <button class="store-button" data-info="info4">
+                        <img src="store4.jpg" alt="Store 4">
+                        <h3>맘짱</h3>
+                    </button>
+                    <button class="store-button" data-info="info5">
+                        <img src="store5.jpg" alt="Store 5">
+                        <h3>꼬방</h3>
+                    </button>
+                    <button class="store-button" data-info="info6">
+                        <img src="store6.jpg" alt="Store 6">
+                        <h3>윤식당</h3>
+                    </button>
+                    <button class="store-button" data-info="info7">
+                        <img src="store7.jpg" alt="Store 7">
+                        <h3>신포스시에비스</h3>
+                    </button>
+                    <button class="store-button" data-info="info8">
+                        <img src="store8.jpg" alt="Store 8">
+                        <h3>화포식당</h3>
+                    </button>
+                    <button class="store-button" data-info="info9">
+                        <img src="store9.jpg" alt="Store 9">
+                        <h3>별미여의</h3>
+                    </button>
+                    <button class="store-button" data-info="info10">
+                        <img src="store10.jpg" alt="Store 10">
+                        <h3>유래일식</h3>
+                    </button>
+                    <button class="store-button" data-info="info11">
+                        <img src="store11.jpg" alt="Store 11">
+                        <h3>제주연탄고기</h3>
+                    </button>
+                </div>
+            </div>
+            <div id="info1" class="store-info">
+                <div class="ip">
+                    <img src="1.1.png" alt="Image 1">
+                    <img src="1.2.png" alt="Image 2">
+                    <img src="1.3.png" alt="Image 3">
+                </div>
+            </div>
+            <div id="info2" class="store-info">
+                <div class="ip">
+                    <img src="2.1.png" alt="Image 1">
+                    <img src="2.2.png" alt="Image 2">
+                    <img src="2.3.png" alt="Image 3">
+                </div>
+            </div>
+            <div id="info3" class="store-info">
+                <div class="ip">
+                    <img src="3.1.png" alt="Image 1">
+                    <img src="3.2.png" alt="Image 2">
+                    <img src="3.3.png" alt="Image 3">
+                </div>
+            </div>
+            <div id="info4" class="store-info">
+                <div class="ip">
+                    <img src="4.1.png" alt="Image 1">
+                    <img src="4.2.png" alt="Image 2">
+                    <img src="4.3.png" alt="Image 3">
+                </div>
+            </div>
+            <div id="info5" class="store-info">
+                <div class="ip">
+                    <img src="5.1.png" alt="Image 1">
+                    <img src="5.2.png" alt="Image 2">
+                    <img src="5.3.png" alt="Image 3">
+                </div>
+            </div>
+            <div id="info6" class="store-info">
+                <div class="ip">
+                    <img src="6.1.png" alt="Image 1">
+                    <img src="6.2.png" alt="Image 2">
+                    <img src="6.3.png" alt="Image 3">
+                </div>
+            </div>
+            <div id="info7" class="store-info">
+                <div class="ip">
+                    <img src="7.1.png" alt="Image 1">
+                    <img src="7.2.png" alt="Image 2">
+                    <img src="7.3.png" alt="Image 3">
+                </div>
+            </div>
+            <div id="info8" class="store-info">
+                <div class="ip">
+                    <img src="8.1.png" alt="Image 1">
+                    <img src="8.2.png" alt="Image 2">
+                    <img src="8.3.png" alt="Image 3">
+                </div>
+            </div>
+            <div id="info9" class="store-info">
+                <div class="ip">
+                    <img src="9.1.png" alt="Image 1">
+                    <img src="9.2.png" alt="Image 2">
+                    <img src="9.3.png" alt="Image 3">
+                </div>
+            </div>
+            <div id="info10" class="store-info">
+                <div class="ip">
+                    <img src="10.1.png" alt="Image 1">
+                    <img src="10.2.png" alt="Image 2">
+                    <img src="10.3.png" alt="Image 3">
+                </div>
+            </div>
+            <div id="info11" class="store-info">
+                <div class="ip">
+                    <img src="11.1.png" alt="Image 1">
+                    <img src="11.2.png" alt="Image 2">
+                    <img src="11.3.png" alt="Image 3">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="store-container">
+            <div class="store-title">개항누리길 주변 가볼만한 곳</div>
+            <div class="external-stores">
+                <div class="external-store">
+                    <img src="external1.png" alt="External Store 1">
+                    <div>
+                        <h3>인천맥주</h3>
+                        <p>인 천 맥 주 (INCHEON BREWERY)는 전신인 칼리가리 브루잉 (CALIGARI BREWING)가 2016년 인천 송도신도시에 문을 연 ‘칼리가리 박사의 밀실’ 이라는 수제맥주 펍을 시작으로 설립된 크래프트 맥주 컴퍼니입니다. 2020년 지역과 맥주에 더욱 집중하기 위하여 ‘인 천 맥 주 (INCHEON BREWERY)’ 로 리브랜딩, 인천 유일의 대표 수제맥주 양조장으로서 활동하고 있습니다. </p>
+                    </div>
+                </div>
+                <div class="external-store">
+                    <img src="external2.jpeg" alt="External Store 2">
+                    <div>
+                        <h3>흑백사진관 우리</h3>
+                        <p>인천에서 시작한 [흑백사진관 우리]는 사람 간 교감을 통해 얻을 수 있는 따뜻한 표정, 자연스러운 상황을 사진에 담습니다. 희망하시는 컨셉도 적극 반영하고, 작가와 함께 손님이 직접 사진을 선택하실 수 있습니다.</p>
+                    </div>
+                </div>
+                <div class="external-store">
+                    <img src="external3.jpeg" alt="External Store 3">
+                    <div>
+                        <h3>차이나타운</h3>
+                        <p>인천 차이나타운은 1883년 인천항 개항 이후 형성된 한국 최대의 차이나타운으로, 다양한 중국 음식과 문화를 체험할 수 있는 관광 명소입니다. 이곳은 중국풍 건축물과 다양한 축제, 맛있는 중국 요리로 유명하여 많은 관광객들이 찾는 곳입니다.</p>
+                    </div>
+                </div>
+                <div class="external-store">
+                    <img src="external4.jpeg" alt="External Store 4">
+                    <div>
+                        <h3>누들 플랫폼</h3>
+                        <p>누들플랫폼은 대중이 즐기는 ‘누들’의 발상지인 인천을 중심으로 발전한 다양한 누들을 전시하고 체험하며, 교육할 수 있는 국내 최초 누들 테마 복합문화 공간입니다. 누들플랫폼은 인천을 중심으로 발전한 다양한 누들을 소개하는 전시공간, 쿠킹교실 등의 체험공간, 오픈키친과 희망 조리실 등 교육공간으로 구성되어 있습니다.</p>
+                    </div>
+                </div>
+                <div class="external-store">
+                    <img src="external5.jpeg" alt="External Store 5">
+                    <div>
+                        <h3>신포 국제시장</h3>
+                        <p>신포 국제시장은 인천의 대표적인 전통시장으로, 다양한 먹거리와 신선한 해산물, 특산품을 판매하는 곳입니다. 특히 닭강정이 유명하며, 현지인과 관광객 모두에게 인기 있는 쇼핑과 맛집 탐방 명소입니다.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="store-title">개항누리길의 유래</div>
+        <img src="greed.png" alt="Image 1">
+    </div>
+    <script>
+        const slides = document.querySelector('.slides');
+        const slide = document.querySelectorAll('.slide');
+        let currentIndex = 0;
+
+        function showNextSlide() {
+            currentIndex++;
+            if (currentIndex >= slide.length) {
+                currentIndex = 0;
+            }
+            slides.style.transform = `translateX(-${currentIndex * 100}%)`;
+        }
+
+        setInterval(showNextSlide, 3000); // Change image every 3 seconds
+
+        const storeButtons = document.querySelector('.store-buttons');
+        const storeButton = document.querySelectorAll('.store-button');
+        let currentStoreIndex = 0;
+
+        function showNextStore() {
+            currentStoreIndex++;
+            if (currentStoreIndex >= storeButton.length) {
+                currentStoreIndex = 0;
+            }
+            storeButtons.style.transform = `translateX(-${currentStoreIndex * 200}px)`;
+        }
+
+        setInterval(showNextStore, 3000); // Change store every 3 seconds
+
+        storeButton.forEach(button => {
+            button.addEventListener('click', () => {
+                document.querySelectorAll('.store-info').forEach(info => {
+                    info.classList.remove('active');
+                });
+                const infoId = button.getAttribute('data-info');
+                document.getElementById(infoId).classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>
